@@ -1,9 +1,11 @@
 import discord
 from discord.ext import commands
+from discord.utils import get
 
 import os
 
-client = commands.Bot(command_prefix = '.')
+client = commands.Bot(command_prefix='.')
+
 
 def load():
     for filename in os.listdir('./cogs'):
@@ -12,6 +14,7 @@ def load():
         else:
             print(f'Unable to load {filename}')
 
+
 def unload():
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
@@ -19,16 +22,24 @@ def unload():
         else:
             print(f'Unable to unload {filename}')
 
+
 @client.event
 async def on_ready():
     print('Starting {0.user}'.format(client))
+
 
 @client.command()
 @commands.has_any_role("Functional Purity", "Elite Hacker")
 async def reload(ctx):
     unload()
     load()
-    await ctx.send('Reloaded extensions')
+    embed = discord.Embed(
+        title='Reloaded extensions',
+        Description='',
+        color=discord.Color.green()
+    )
+    await ctx.send(embed=embed)
+
 
 load()
 
