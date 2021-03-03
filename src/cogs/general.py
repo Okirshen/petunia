@@ -16,5 +16,9 @@ class General(commands.Cog):
         embed.add_field(name='latency', value=f'{round(self.client.latency * 1000)} ms', inline = False)
         await ctx.send(embed = embed)
 
+    @commands.Cog.listener()
+    async def on_member_join(self, member):
+        print(f'{member.id} has joined')
+
 def setup(client):
     client.add_cog(General(client))

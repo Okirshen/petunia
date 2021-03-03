@@ -4,6 +4,9 @@ from discord.utils import get
 
 import os
 
+# intents = discord.Intents()
+# intents.members = True
+
 client = commands.Bot(command_prefix='.')
 
 
