@@ -82,5 +82,93 @@ class Mod_Fun(commands.Cog):
 
         await ctx.channel.send(embed=embed)
 
+    # Error checking
+    ###################################################################################################################
+
+    @say.error
+    async def say_error(self, ctx, error):
+        await ctx.channel.purge(limit=1)
+        embed = discord.Embed(
+            title='',
+            Description='',
+            color=discord.Color.green()
+        )
+        if (error, commands.MissingRequiredArgument):
+            embed.add_field(
+                name=f'Error!',
+                value='Missing argument: check help for proper usage',
+                inline=False
+            )
+
+        await ctx.channel.send(embed=embed)
+
+    @spam.error
+    async def spam_parse_error(self, ctx, error):
+        await ctx.channel.purge(limit=1)
+        embed = discord.Embed(
+            title='',
+            Description='',
+            color=discord.Color.green()
+        )
+        if (error, commands.ArgumentParsingError):
+            embed.add_field(
+                name=f'Error!',
+                value='Invalid argument: check help for proper usage',
+                inline=False
+            )
+
+        await ctx.channel.send(embed=embed)
+
+    @spam.error
+    async def spam_args_error(self, ctx, error):
+        await ctx.channel.purge(limit=1)
+        embed = discord.Embed(
+            title='',
+            Description='',
+            color=discord.Color.green()
+        )
+        if (error, commands.MissingRequiredArgument):
+            embed.add_field(
+                name=f'Error!',
+                value='Missing argument(s): check help for proper usage',
+                inline=False
+            )
+
+        await ctx.channel.send(embed=embed)
+
+    @bean.error
+    async def bean_parse_error(self, ctx, error):
+        await ctx.channel.purge(limit=1)
+        embed = discord.Embed(
+            title='',
+            Description='',
+            color=discord.Color.green()
+        )
+        if (error, commands.ArgumentParsingError):
+            embed.add_field(
+                name=f'Error!',
+                value='Invalid argument: check help for proper usage',
+                inline=False
+            )
+
+        await ctx.channel.send(embed=embed)
+
+    @bean.error
+    async def bean_args_error(self, ctx, error):
+        await ctx.channel.purge(limit=1)
+        embed = discord.Embed(
+            title='',
+            Description='',
+            color=discord.Color.green()
+        )
+        if (error, commands.MissingRequiredArgument):
+            embed.add_field(
+                name=f'Error!',
+                value='Missing argument(s): check help for proper usage',
+                inline=False
+            )
+
+        await ctx.channel.send(embed=embed)
+
 def setup(client):
     client.add_cog(Mod_Fun(client))
