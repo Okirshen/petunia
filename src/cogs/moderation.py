@@ -284,7 +284,7 @@ class Moderation(commands.Cog):
         if (error, commands.BadArgument):
             embed.add_field(
                 name='Error',
-                value='Invalid argument: check help for proper usage'.
+                value='Invalid argument: check help for proper usage',
                 inline=False
             )
 
@@ -301,7 +301,7 @@ class Moderation(commands.Cog):
         if (error, commands.MissingRequiredArgument):
             embed.add_field(
                 name='Error',
-                value='Invalid argument: check help for proper usage'
+                value='Invalid argument: check help for proper usage',
                 inline=False
             )
 
