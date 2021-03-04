@@ -69,7 +69,7 @@ class Mod_Fun(commands.Cog):
             color=discord.Color.green()
         )
         embed.add_field(
-            name=f'You Have Been BEANED!',
+            name=f'{member.name}, You Have Been BEANED!',
             value='Bean Bean Bean Bean Bean',
             inline=False
         )

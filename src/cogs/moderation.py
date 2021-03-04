@@ -254,6 +254,127 @@ class Moderation(commands.Cog):
     async def unload(self, extension):
         self.client.unload_extension(f'cogs.{extension}')
 
+    # Error checking
+    ###################################################################################################################
+    @purge.error
+    async def purge_parse_error(self, ctx, error):
+        await ctx.checking(limit=1)
+        embed = discord.Embed(
+            title='',
+            Description='',
+            color=discord.Color.green()
+        )
+        if (error, commands.ArgumentParsingError):
+            embed.add_field(
+                name='Error',
+                value='Unable to parse value',
+                inline=False
+            )
+
+        await ctx.channel.send(embed=embed)
+
+    @purge.error
+    async def purge_bad_args_error(self, ctx, error):
+        await ctx.channel.purge(limit=1)
+        embed = discord.Embed(
+            title='',
+            Description='',
+            color=discord.Color.green()
+        )
+        if (error, commands.BadArgument):
+            embed.add_field(
+                name='Error',
+                value='Invalid argument: check help for proper usage'.
+                inline=False
+            )
+
+        await ctx.channel.send(embed=embed)
+
+    @purge.error
+    async def purge_missing_args_error(self, ctx, error):
+        await ctx.channel.purge(limit=1)
+        embed = discord.Embed(
+            title='', 
+            Description='',
+            color=discord.Color.green()    
+        )
+        if (error, commands.MissingRequiredArgument):
+            embed.add_field(
+                name='Error',
+                value='Invalid argument: check help for proper usage'
+                inline=False
+            )
+
+        await ctx.channel.send(embed=embed)
+
+    @warn.error
+    async def warn_missing_args_error(self, ctx, error):
+        await ctx.channel.purge(limit=1)
+        embed = discord.Embed(
+            title='',
+            Description='',
+            color=discord.Color.green()
+        )
+        if (error, commands.MissingRequiredArgument):
+            embed.add_field(
+                name='Error',
+                value='Invalid argument: check help for proper usage',
+                inline=False
+            )
+
+        await ctx.channel.send(embed=embed)
+
+    @warn.error
+    async def warn_bad_args_error(self, ctx, error):
+        await ctx.channel.purge(limit=1)
+        embed = discord.Embed(
+            title='',
+            Description='',
+            color=discord.Color.green()
+        )
+        if (error, commands.BadArgument):
+            embed.add_field(
+                name='Error',
+                value='Invalid argument: check help for proper usage',
+                inline=False
+            )
+
+        await ctx.channel.send(embed=embed)
+
+    @mute.error
+    async def mute_missing_args_error(self, ctx, error):
+        await ctx.channel.purge(limit=1)
+        embed = discord.Embed(
+            title='',
+            Description='',
+            color=discord.Color.green()
+        )
+        if (error, commands.MissingRequiredArgument):
+            embed.add_field(
+                name='Error',
+                value='Invalid argument: check help for proper usage',
+                inline=False
+            )
+
+        await ctx.channel.send(embed=embed)
+
+    @mute.error
+    async def mute_bad_args_error(self, ctx, error):
+        await ctx.channel.purge(limit=1)
+        embed = discord.Embed(
+            title='',
+            Description='',
+            color=discord.Color.green()
+        )
+        if (error, commands.BadArgument):
+            embed.add_field(
+                name='Error',
+                value='Invalid argument: check help for proper usage',
+                inline=False
+            )
+
+        await ctx.channel.send(embed=embed)
 
 def setup(client):
     client.add_cog(Moderation(client))
+
